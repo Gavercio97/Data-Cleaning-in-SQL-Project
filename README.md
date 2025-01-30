@@ -47,7 +47,7 @@ CREATE TABLE NashvilleHousing (
 
 The following SQL queries were used to clean the data
 
---**STEP 1: Standardize Date Format in SaleDate Column**
+**STEP 1: Standardize Date Format in SaleDate Column**
 
 ```sql
 UPDATE NashvilleHousing
@@ -56,7 +56,7 @@ SET SaleDate = TO_CHAR(TO_DATE(SaleDate::TEXT,'Month DD, YYYY'), 'YYYY-MM-DD');
 ```
 
 
---**STEP 2: Populate Property Address data**
+**STEP 2: Populate Property Address data**
 
 ```sql
 SELECT *
@@ -85,7 +85,7 @@ WHERE a.ParcelID = b.ParcelID
 
 ```
 
--- **STEP 3: Breaking out Address into Individual Columns (Address, City, State)**
+**STEP 3: Breaking out Address into Individual Columns (Address, City, State)**
 
 ```sql
 ALTER TABLE NashvilleHousing
@@ -121,7 +121,7 @@ SET OwnerSplitState = SPLIT_PART(OwnerAddress, ',', 3);
 
 ```
 
--- **STEP 4: Change Y and N to Yes and No in "Sold as Vacant" field**
+**STEP 4: Change Y and N to Yes and No in "Sold as Vacant" field**
 ```sql
 UPDATE NashvilleHousing
 SET SoldAsVacant = CASE 
@@ -131,7 +131,7 @@ SET SoldAsVacant = CASE
     END;
 
 ```
--- **STEP 5: Remove Duplicates**
+**STEP 5: Remove Duplicates**
 ```sql
 WITH RowNumCTE AS (
     SELECT uniqueid,
@@ -150,7 +150,7 @@ DELETE FROM nashvillehousing
 WHERE uniqueid IN (SELECT uniqueid FROM RowNumCTE2)
 ```
 
--- **STEP 6: Delete Unused Columns**
+**STEP 6: Delete Unused Columns**
 ```sql
 ALTER TABLE NashvilleHousing
 DROP COLUMN OwnerAddress;
