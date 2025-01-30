@@ -161,3 +161,10 @@ DROP COLUMN TaxDistrict;
 ALTER TABLE NashvilleHousing
 DROP COLUMN PropertyAddress; 
 ```
+---
+## Dataset before cleaning
+![dataset before cleaning](https://github.com/Gavercio97/Data-Cleaning-in-SQL-Project/blob/main/assets/images/Before_cleaning1.png)
+
+---
+## Dataset after cleaning
+![Dataset after cleaning](https://github.com/Gavercio97/Data-Cleaning-in-SQL-Project/blob/main/assets/images/After_cleaning.png)
